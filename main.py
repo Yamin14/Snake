@@ -26,8 +26,8 @@ directions = []
 snake_x.append(x)
 snake_y.append(y)
 directions.append("Right")
-turn_x = [""]
-turn_y = [""]
+turn_x = [0]
+turn_y = [0]
 snakes = [""]
 
 #power up
@@ -103,7 +103,7 @@ while running:
 		
 		if i != 0:
 			turn_x[i] = turn_x[0]
-			turn_y[i] = turn_y[0]
+			turn_y[i] = turn_y[0]		
 			if (snake_x[0] >= snake_x[i]-radius and snake_x[0] <= snake_x[i]+radius) and (snake_y[0] >= snake_y[i]-radius and snake_y[0] <= snake_y[i]+radius):
 				game_over()
 			if snake_x[i] == turn_x[i] and snake_y[i] == turn_y[i]:
@@ -118,20 +118,20 @@ while running:
 		elif directions[i] == "Down":
 			snake_y[i] += speed
 
-		if snake_x[i] >= 610:
+		if snake_x[i] > 610:
 			snake_x[i] = 90
-		elif snake_x[i] <= 90:
+		elif snake_x[i] < 90:
 			snake_x[i] = 610
-		elif snake_y[i] >= 660:
+		elif snake_y[i] > 660:
 			snake_y[i] = 140
-		elif snake_y[i] <= 140:
+		elif snake_y[i] < 140:
 			snake_y[i] = 660
 			
 	#check collision
 	if snakes[0].colliderect(power_up) == True:
 		snakes.append("")
-		turn_x.append("")
-		turn_y.append("")
+		turn_x.append(0)
+		turn_y.append(0)
 		score += 1
 		if directions[-1] == "Right":
 			snake_x.append(snake_x[-1]-radius*2)
